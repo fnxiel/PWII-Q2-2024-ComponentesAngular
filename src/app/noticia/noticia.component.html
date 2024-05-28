@@ -1,0 +1,17 @@
+<div>
+<a href={{noticia.enlace}}>
+    <img src={{noticia.img.src}} alt={{noticia.img.alt}} />
+    <div *ngIf="destacado">
+        <h1>
+            {{noticia.titulo}}
+        </h1>
+        <p *ngIf="destacado">{{noticia.resumen}}</p>
+    </div>
+    <div *ngIf="!destacado">
+        <h2>
+            {{noticia.titulo}}
+        </h2>
+    </div>
+    <span>{{noticia.fecha.toLocaleDateString()}}</span>
+</a>
+</div>
