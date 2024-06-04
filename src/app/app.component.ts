@@ -1,19 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { INoticia } from './interfaces/INoticia';
 import { NoticiaComponent } from './noticia/noticia.component';
+import { NgFor } from '@angular/common';
+import { ContadorComponent } from './contador/contador.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NoticiaComponent],
+  imports: [RouterOutlet, NoticiaComponent, NgFor, ContadorComponent, FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Hola Mundo';
   saludo = 'Mi nombre es Luke';
   descripcion = 'Esta es una pagina basica'
+
+  tituloNoticiaNueva = 'Predeterminado'
+  destacado= false
 
   noticias: INoticia[] = [
     {
@@ -48,6 +54,29 @@ export class AppComponent {
       },
       enlace: 'https://www.google.com',
       //destacado: false
-    },
+    },    
   ]
+
+  agregarNoticia(){
+    const noticiaNueva: INoticia = {
+      titulo: this.tituloNoticiaNueva,
+      resumen: 'Creada desde el componente',
+      fecha: new Date(),
+      img: {
+        src: 'https://picsum.photos/seed/picsum/200/300',
+        alt: 'Foto predeterminada'
+      },
+      enlace: 'https://www.google.com'
+    }
+    this.tituloNoticiaNueva = "Predeterminado"
+    this.noticias.push(noticiaNueva)
+  }
+
+  eliminarNoticiaReciente(){
+    this.noticias.pop()
+  }
+
+  ngOnInit(): void {
+    
+  }
 }

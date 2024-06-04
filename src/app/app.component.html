@@ -53,6 +53,20 @@
       <p>{{descripcion}}</p>
 
       <h1>Noticias</h1>
+      <app-contador></app-contador>
+      <div>
+        <h2>Agregar nueva noticia</h2>
+        <label for="titulo" class="form-label">Titulo noticia</label>
+        <input type="text" class="form-control" id="titulo" [(ngModel)]="tituloNoticiaNueva">
+        <label for="destacado">Destacado</label>
+        <input type="checkbox" id="destacado" id="destacado" [(ngModel)]="destacado">
+        <label >{{destacado ? "Noticia destacada" : "Noticia corriente"}}</label>
+      </div>
+      
+      <button class="btn btn-primary" (click)="agregarNoticia()">Crear una nueva noticia predeterminada</button>
+
+      <button class="btn btn-danger" (click)="eliminarNoticiaReciente()">Eliminar noticia mas reciente</button>
+
       <app-noticia 
         *ngFor="let noticia of noticias" 
         [destacado]="true" 

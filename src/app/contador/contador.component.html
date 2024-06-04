@@ -1,0 +1,20 @@
+<p>
+    <button (click)="disminuirContador()">-</button>
+    <input type="text" [(ngModel)]="conteo" />
+    <button (click)="aumentarContador()">+</button>
+</p>
+<p>
+    <label>El valor del contador es: {{conteo}}</label>
+</p>
+
+<p *ngIf="error">
+    <label>El contador tiene un valor invalido</label>
+</p>
+
+<p *ngIf="!error">
+    <label>Trayendo todas las noticias</label>
+</p>
+
+<p *ngIf="conteo >= 10">
+    <label class="correcto">Se estan mostrando mas de 10 noticias en pantalla</label>
+</p>
