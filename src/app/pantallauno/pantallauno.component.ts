@@ -1,18 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NotificacionesService } from '../notificaciones.service';
+import { FormsModule } from '@angular/forms';
+import { ProductosService } from '../productos.service';
 
 @Component({
   selector: 'app-pantallauno',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './pantallauno.component.html',
   styleUrl: './pantallauno.component.css'
 })
 export class PantallaunoComponent implements OnInit {
   titulo: string = ''
   mensaje: string = ''
-  constructor(private ruta: ActivatedRoute, private notificaciones: NotificacionesService){}
+
+  criterioBusqueda: string = ''
+  descripcion: string = ''
+
+  constructor(
+    private ruta: ActivatedRoute, 
+    private notificaciones: NotificacionesService,
+    private servicioProductos: ProductosService
+  ){}
   
   ngOnInit(): void {
     this.ruta.queryParams.subscribe(params =>{
@@ -20,6 +30,7 @@ export class PantallaunoComponent implements OnInit {
       this.mensaje = params['mensaje']
 
     })
+    this.servicioProductos.getProductos()
   }
 
   agregarNotificacionPantallaUno(){

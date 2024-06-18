@@ -2,4 +2,12 @@
 <h3>{{titulo}}</h3>
 <p>{{mensaje}}</p>
 
+<label for="">Criterio busqueda</label>
+<input type="text" [(ngModel)]="criterioBusqueda" />
+<p>{{criterioBusqueda}}</p>
+
+<label for="">Descripcion</label>
+<input type="text" [(ngModel)]="descripcion" />
+<p>{{descripcion}}</p>
+
 <button (click)="agregarNotificacionPantallaUno()">Agregar notificacion</button>
